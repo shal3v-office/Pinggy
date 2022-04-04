@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Signup User By Admin Page</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Signup User By Admin Page</h1>
+        <% if (isAdmin && user) { %>
+        <h2>You are admin with <%= user.email %> email</h2>
+     
+
+    <form method="POST">
+        <div class='field'>
+            <label>
+                Email
+                <input type='email' name='email' /> 
+            </label>
+        </div>
+        <div class='field'>
+            <label>
+                Password
+                <input type='password' name='password' /> 
+            </label>
+        </div>
+
+        <input type="submit" value="Sign Up" />
+        <% } else { %> 
+            <h2>Sorry, you are not admin and you are dont have permission to add user.</h2>
+            <h3>Please <a href="/session/">Login</a> </h3>
+        <% } %>   
+    </form>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <% if (user) { %>
+      <p>Nice to see you: <%= user.email %></p>
+      <form action="/sessions/logoutView" method="POST">
+        <input type="submit" value="Logout" />
+      </form>
+      <!-- <a href='/users/token'>Get Token</a> -->
+    <br>
+    <a href='/sessions/'> Change Account </a>
+    <div>
+      Admin?<a href="/users/newByAdmin/"> Add user here </a> <br>
+      <a href='/users/token/'> Create Token </a>
+    </div>
+    <% } else { %>
+    <a href='/sessions/'> Login </a>
+    <% } %>
+  </body>
+</html>
