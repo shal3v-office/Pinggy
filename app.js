@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 //Mongo DB
 const mongoose = require('mongoose');
-const uri = "mongodb+srv://tovaBulvin:RxA6jALYQrRDjcTQ@cluster0.c14rf.mongodb.net/Hameamenet?retryWrites=true&w=majority";
+const uri = "mongodb+srv://Dome:uBAcDhf9FNeXFpSM@cluster0.c8ayw.mongodb.net/pinggy?retryWrites=true&w=majority";
 mongoose.connect(uri).then().catch( err=> {
   console.log(err);
   console.log('error to connect to mongodb');

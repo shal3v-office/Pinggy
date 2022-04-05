@@ -19,13 +19,12 @@ router.get('/newByAdmin', isLoggedIn , function(req, res, next) {
 
 
 //register
-router.post('/', isLoggedIn ,async function(req, res, next) {
-  console.log(req.body);
-  
+router.post('/'/*, isLoggedIn*/ ,async function(req, res, next) {
+  console.log("--------- create user --------");
+  let user = null;
   try {
-    let user = new User(req.body);
-    console.log(res.locals.isAdmin);
-    if(res.locals.isAdmin == false) throw new Error('only admin has permission to add user');
+    user = new User(req.body);
+    //if(res.locals.isAdmin == false) throw new Error('only admin has permission to add user');
     var userInDB = await User.findOne({'email':user.email});
     if (userInDB == null){
       await user.save();
@@ -40,8 +39,8 @@ router.post('/', isLoggedIn ,async function(req, res, next) {
   }
 
   req.session.userid = user.id;
-  //res.redirect('users/screen');
-  res.send(user);
+  res.redirect('users/screen');
+  //res.send(user);
 
 });
 
@@ -84,6 +83,7 @@ router.get('/token' , function(req, res, next) {
 router.post('/token' ,async function(req, res, next) {
   console.log("hi from post token");
   user = req.user;
+  if(user) {
     if (!user.token) {
       //create token
       const token = jwt.sign(
@@ -106,6 +106,9 @@ router.post('/token' ,async function(req, res, next) {
       res.render('users/token', { token });
       //res.send({token});
     }
+  } else {
+    res.render('users/token');
+  }
 });
 
 

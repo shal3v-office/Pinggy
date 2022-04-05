@@ -1,11 +1,6 @@
 //Create Or Upadte ExamAfterUpdate
 let data = {
-    examIdFromWP:"67",
-    userIdFromWP:"1",
-    score:"0",
-    date:new Date() ,
-    lastDuration:"0",
-    solvingStatus:"NOT AT ALL"
+    xx:"yy"
 };
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function () {
