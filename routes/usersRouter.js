@@ -91,8 +91,6 @@ router.post('/token' ,async function(req, res, next) {
     );
 
     try {
-      //save token to user details
-      var userToSend = await User.findByIdAndUpdate(user._id, {token: token});
       res.render('users/token', { token });
       //res.send({token});
     } catch (error) {
