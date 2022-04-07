@@ -3,10 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const config = require("./config.js");
 
 //Mongo DB
 const mongoose = require('mongoose');
-const uri = "mongodb+srv://Dome:uBAcDhf9FNeXFpSM@cluster0.c8ayw.mongodb.net/pinggy?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${config.DB_USER_NAME}:${config.DB_PASSWORD}@cluster0.c8ayw.mongodb.net/${config.DB_NAME}?retryWrites=true&w=majority`;
 mongoose.connect(uri).then().catch( err=> {
   console.log(err);
   console.log('error to connect to mongodb');
@@ -16,6 +17,9 @@ mongoose.connect(uri).then().catch( err=> {
 var indexRouter = require('./routes/indexRouter');
 var userRouter = require('./routes/usersRouter');
 var sessionRouter = require('./routes/sessionsRouter');
+var customerRouter = require('./routes/customerRouter');
+var siteRouter = require('./routes/siteRouter');
+var monitorRouter = require('./routes/monitorRouter');
 
 //Middleware
 const checkIfAdminIsAuth = require('./lib/middlewares/checkIfAdminIsAuth');
@@ -58,6 +62,9 @@ app.use(checkIfAdminIsAuth);
 
 app.use('/users', userRouter);
 app.use('/sessions', sessionRouter);
+app.use('/customers', customerRouter);
+app.use('/sites', siteRouter);
+app.use('/monitor', monitorRouter);
 
 //TOKEN REQUIRED
 //A routers that needs auth to access

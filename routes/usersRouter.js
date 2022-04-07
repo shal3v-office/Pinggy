@@ -5,8 +5,6 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const isLoggedIn = require('../lib/middlewares/isLoggedIn');
 
-
-
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.render('users/new', { user: new User() });
@@ -39,8 +37,8 @@ router.post('/'/*, isLoggedIn*/ ,async function(req, res, next) {
   }
 
   req.session.userid = user.id;
-  res.redirect('users/screen');
-  //res.send(user);
+  //res.redirect('users/screen');
+  res.send(user);
 
 });
 
@@ -87,18 +85,19 @@ router.post('/token' ,async function(req, res, next) {
     //create token
     const token = jwt.sign(
       { id: user._id },
-      'Hamehamenet1234'
+      'Pinggy1234'
     );
 
     try {
-      res.render('users/token', { token });
-      //res.send({token});
+      //res.render('users/token', { token });
+      res.send({token});
     } catch (error) {
       console.log("error");
       return next(error);
     }
   } else {
-    res.render('users/token');
+    //res.render('users/token');
+    res.send("");
   }
 });
 
