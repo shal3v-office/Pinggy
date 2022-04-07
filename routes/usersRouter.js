@@ -72,7 +72,7 @@ router.post('/newByAdmin/', isLoggedIn ,async function(req, res, next) {
 });
 
 router.get('/screen' , async function(req, res, next) {
-  res.render('users/index', { title: 'HAMEAMENET', user: req.user });
+  res.render('users/index', { title: 'Pinggy', user: req.user });
 });
 
 router.get('/token' , function(req, res, next) {
