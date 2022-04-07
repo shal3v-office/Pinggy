@@ -84,27 +84,18 @@ router.post('/token' ,async function(req, res, next) {
   console.log("hi from post token");
   user = req.user;
   if(user) {
-    if (!user.token) {
-      //create token
-      const token = jwt.sign(
-        { id: user._id },
-        'Hamehamenet1234'
-      );
+    //create token
+    const token = jwt.sign(
+      { id: user._id },
+      'Hamehamenet1234'
+    );
 
-      try {
-        //save token to user details
-        var userToSend = await User.findByIdAndUpdate(user._id, {token: token});
-        res.render('users/token', { token });
-        //res.send({token});
-      } catch (error) {
-        console.log("error");
-        return next(error);
-      }
-    }
-    else {
-      let token = user.token;
+    try {
       res.render('users/token', { token });
       //res.send({token});
+    } catch (error) {
+      console.log("error");
+      return next(error);
     }
   } else {
     res.render('users/token');
