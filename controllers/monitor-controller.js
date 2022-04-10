@@ -1,5 +1,6 @@
 const monitorService = require("../services/monitor-service");
 const customerService = require("../services/customer-service");
+const axios = require('axios');
 
 const addMonitorRow = async(url, status, siteId) => {
     console.log("finally");
@@ -26,16 +27,15 @@ const runMonitor = async(req, res) => {
                     if(url.charAt(url.length - 1)!="/")url += "/";
                     url += link;
                     console.log(url);
-                    fetch("https://pinggy-app.herokuapp.com/"+url).then((res) => {
-                        console.log("then");
-                        console.log(res);
-                        monitorRows.push(addMonitorRow(url, 200, site._id));
+                    axios.get(url)
+                    .then(function (response) {
+                        monitorRows.push(addMonitorRow(url, response.status, site._id));
+                        console.log(response);
                     })
-                    .catch((err) => {
-                        console.error("catch");
-                        console.log(err);
-                        monitorRows.push(addMonitorRow(url, 500, site._id));
-                    });
+                    .catch(function (error) {
+                        monitorRows.push(addMonitorRow(url, error.response.status, site._id));
+                        console.log(error);
+                    })
                 }
             }
         }
@@ -46,7 +46,7 @@ const runMonitor = async(req, res) => {
         return res.status(500).send("Internal Server Error");
     }
 };
-// setInterval( runMonitor, 30 * 1000);
+setInterval( runMonitor, 30 * 1000);
 
 const getFaildMonitorRowsBySite = async(req, res) => {
     try {
