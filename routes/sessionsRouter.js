@@ -45,8 +45,8 @@ router.post('/logout', function(req, res, next) {
 router.post('/logoutView', function(req, res, next) {
   try {
     req.logout();
-    res.redirect('/users/screen');
-    //res.sendStatus(200);
+    //res.redirect('/users/screen');
+    res.sendStatus(200);
   } catch (error) {
     return next(error);
   }
