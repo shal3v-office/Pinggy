@@ -35,8 +35,6 @@ const runMonitor = async(req, res) => {
                 }
             }
         }
-        // const monitor = req.body;
-        // const createdMonitor = await monitorService.addMonitorRow(monitor);
         return res.status(200).json(monitorRows);
     } catch (err) {
         return res.status(500).send("Internal Server Error");
