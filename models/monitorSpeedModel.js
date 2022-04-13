@@ -9,7 +9,7 @@ const MonitorSpeed = mongoose.model(
         timestamps: {
             createdAt: Date
         },
-        gpsiResults: [{
+        gpsiResult: {
             captchaResult: String,
             kind: String,
             id: String,
@@ -123,7 +123,7 @@ const MonitorSpeed = mongoose.model(
                 stackPacks: {}
             },
             analysisUTCTimestamp:Date
-        }]
+        }
     })
 );
 module.exports = { MonitorSpeed };

@@ -2,6 +2,7 @@ const monitorSpeedService = require("../services/monitorSpeedService");
 const customerService = require("../services/customerService");
 const siteService = require("../services/siteService");
 const getPageSpeedInsightPerURL = require('../lib/functions/getPageSpeedInsightPerURL.js');
+const scheduleSpeedMonitor = require('../lib/functions/scheduleSpeedMonitor');
 
 
 const runMonitorPerSite = async(req, res) => {
@@ -12,12 +13,16 @@ const runMonitorPerSite = async(req, res) => {
         if(!site) throw new Error("The site is not valid");
         var url = site.mainURL;
         var checkedDate = new Date();
-        if(url.charAt(url.length - 1)!="/")url += "/";
+        if(url.charAt(url.length - 1)!="/") url += "/";
             for(const link of site.innerLinks){
                 var monitorUrl = url + link;
                 await getPageSpeedInsightPerURL(monitorUrl)
                 .then( async function (response) {
-                    let monitorRow = await monitorSpeedService.addMonitorRow({ siteId: siteId,link: monitorUrl,timestamps:{ createdAt: checkedDate },gpsiResults: response.result  });
+                    //save the result in db
+                    let monitorRow = await monitorSpeedService.addMonitorRow({ siteId: siteId,link: monitorUrl,timestamps:{ createdAt: checkedDate },gpsiResult: response.result  });
+                    //schedule this every hour
+                    scheduleSpeedMonitor(siteId,monitorUrl);
+                    //save the object in array
                     monitorRows.push(monitorRow);
                 })
                 .catch(function (error) {
