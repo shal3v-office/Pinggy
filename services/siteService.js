@@ -1,5 +1,5 @@
 const { Site } = require("../models/siteModel");
-const customerService = require("./customer-service");
+const customerService = require("./customerService");
 
 //add new site 
 const createSite = async(newSite) => {

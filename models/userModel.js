@@ -44,16 +44,10 @@ userSchema.pre('findOneAndUpdate', function (next) {
 
 userSchema.methods.checkPassword = function(candidatePassword) {
     return new Promise((resolve, reject) => {
-        
-        if(this.password === candidatePassword) {
-            resolve(true);
-        }
-        else {
-            bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
-                if (err) return reject(err);
-                resolve(isMatch);
-            });
-        }
+        bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
+            if (err) return reject(err);
+            resolve(isMatch);
+        });
     })
 };
 

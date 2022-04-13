@@ -1,5 +1,5 @@
-const monitorService = require("../services/monitor-service");
-const customerService = require("../services/customer-service");
+const monitorService = require("../services/monitorUptimeService");
+const customerService = require("../services/customerService");
 const axios = require('axios');
 
 const addMonitorRow = async(url, status, siteId) => {

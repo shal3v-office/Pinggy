@@ -1,4 +1,4 @@
-const { Monitor } = require("../models/monitorModel");
+const { Monitor } = require("../models/monitorUptimeModel");
 
 //add new monitor row
 const addMonitorRow = async(monitor) => {

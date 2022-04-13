@@ -1,4 +1,4 @@
-const siteService = require("../services/site-service");
+const siteService = require("../services/siteService");
 const createSite = async(req, res) => {
     try {
         const site = req.body;

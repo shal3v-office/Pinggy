@@ -19,7 +19,7 @@ var userRouter = require('./routes/usersRouter');
 var sessionRouter = require('./routes/sessionsRouter');
 var customerRouter = require('./routes/customerRouter');
 var siteRouter = require('./routes/siteRouter');
-var monitorRouter = require('./routes/monitorRouter');
+var monitorRouter = require('./routes/monitorUptimeRouter');
 
 //Middleware
 const checkIfAdminIsAuth = require('./lib/middlewares/checkIfAdminIsAuth');
@@ -30,10 +30,6 @@ require('./initializers/passport');
 var cors = require('cors');
 
 var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
 
 var cookieSession = require('cookie-session')
 app.use(cookieSession({

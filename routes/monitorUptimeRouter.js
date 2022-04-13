@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const monitorController = require("../controllers/monitor-controller");
+const monitorController = require("../controllers/monitorController");
 
 router.get("/createCustomer/:siteId", monitorController.getFaildMonitorRowsBySite);
 router.get("/getCustomerByUser/:siteId", monitorController.getMonitorRowsBySite);

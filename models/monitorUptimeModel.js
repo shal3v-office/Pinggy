@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Site } = require('./siteModel');
 
-const Monitor = mongoose.model(
+const MonitorUptime = mongoose.model(
     "Monitor",
     new mongoose.Schema({
         url: { type:String},
@@ -12,4 +12,4 @@ const Monitor = mongoose.model(
         timestamps: { createdAt: 'createdAt' } 
     })
 );
-module.exports = {Monitor};
+module.exports = {MonitorUptime};

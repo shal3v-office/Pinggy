@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const customerController = require("../controllers/customer-controller");
+const customerController = require("../controllers/customerController");
 
 router.post("/createCustomer", customerController.createCustomer);
 router.get("/getCustomerByUser/:userId", customerController.getCustomerByUser);

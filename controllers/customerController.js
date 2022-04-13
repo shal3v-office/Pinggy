@@ -1,4 +1,4 @@
-const customerService = require("../services/customer-service");
+const customerService = require("../services/customerService");
 const createCustomer = async(req, res) => {
     try {
         const customer = req.body;
