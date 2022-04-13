@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Site } = require('./siteModel');
 
 const MonitorUptime = mongoose.model(
-    "Monitor",
+    "MonitorUptime",
     new mongoose.Schema({
         url: { type:String},
         status: { type: Number },

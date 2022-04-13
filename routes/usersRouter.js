@@ -30,8 +30,8 @@ router.post('/'/*, isLoggedIn*/ ,async function(req, res, next) {
 });
 
 router.post('/token' ,async function(req, res, next) {
-  user = req.user;
-  if(user) {
+  let user = await User.findOne({'email':req.body.email});
+  if(user && await user.checkPassword(req.body.password)) {
     //create token
     const token = jwt.sign(
       { id: user._id },
@@ -46,7 +46,7 @@ router.post('/token' ,async function(req, res, next) {
     }
   } else {
     //res.render('users/token');
-    res.send("");
+    res.send("error");
   }
 });
 

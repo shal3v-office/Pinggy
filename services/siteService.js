@@ -22,6 +22,15 @@ const getSitesByCustomerId = async(customerId) => {
     }
 };
 
+//get site by id
+const getSiteById = async(siteID) => {
+    try {
+        return await Site.findOne({ _id: siteID })
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 //update inner site links
 const updateSiteInnerLinks = async(siteId, innerLinks) => {
     try {
@@ -34,5 +43,6 @@ const updateSiteInnerLinks = async(siteId, innerLinks) => {
 module.exports = {
     createSite,
     getSitesByCustomerId,
-    updateSiteInnerLinks
+    updateSiteInnerLinks,
+    getSiteById
 }

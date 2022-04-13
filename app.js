@@ -19,7 +19,8 @@ var userRouter = require('./routes/usersRouter');
 var sessionRouter = require('./routes/sessionsRouter');
 var customerRouter = require('./routes/customerRouter');
 var siteRouter = require('./routes/siteRouter');
-var monitorRouter = require('./routes/monitorUptimeRouter');
+var monitorUptimeRouter = require('./routes/monitorUptimeRouter');
+var monitorSpeedRouter = require('./routes/monitorSpeedRouter');
 
 //Middleware
 const checkIfAdminIsAuth = require('./lib/middlewares/checkIfAdminIsAuth');
@@ -51,20 +52,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-app.use('/', indexRouter);
-
 app.use(checkIfAdminIsAuth);
-
+app.use('/', indexRouter);
 app.use('/users', userRouter);
 app.use('/sessions', sessionRouter);
-app.use('/customers', customerRouter);
-app.use('/sites', siteRouter);
-app.use('/monitor', monitorRouter);
 
 //TOKEN REQUIRED
 //A routers that needs auth to access
 app.use(passport.authenticate('jwt', { session: false }));
+
+app.use('/api/customers', customerRouter);
+app.use('/api/sites', siteRouter);
+app.use('/api/monitorUptime', monitorUptimeRouter);
+app.use('/api/monitorSpeed', monitorSpeedRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
