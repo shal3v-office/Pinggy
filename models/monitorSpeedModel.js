@@ -15,30 +15,10 @@ const MonitorSpeed = mongoose.model(
             id: String,
             loadingExperience: {
                 id: String,
-                metrics: {
-                    FIRST_CONTENTFUL_PAINT_MS: {
-                        percentile: Number,
-                        distributions: [ 
-                        {
-                            min: Number,
-                            max: Number,
-                            proportion: Number
-                        }],
-                        category: String
-                    },
-                    FIRST_INPUT_DELAY_MS: {
-                        percentile: Number,
-                        distributions: [
-                        {
-                            min: Number,
-                            max: Number,
-                            proportion: Number
-                        }],
-                        category: String
-                    }
-                },
+                metrics: {},
                 overall_category: String,
-                initial_url: String
+                initial_url: String,
+                origin_fallback: Boolean
             },
             originLoadingExperience: {
                 id: String,
@@ -64,7 +44,8 @@ const MonitorSpeed = mongoose.model(
                         category: String
                     },
                     overall_category: String,
-                    initial_url: String
+                    initial_url: String,
+                    origin_fallback: Boolean
                 },  
             },
             lighthouseResult: {
@@ -72,7 +53,8 @@ const MonitorSpeed = mongoose.model(
                 finalUrl: String,
                 lighthouseVersion: String,
                 userAgent: String,
-                fetchTime: Date,
+                fetchTime: String,
+                userAgent: String,
                 environment: {
                     networkUserAgent: String,
                     hostUserAgent: String,
@@ -82,24 +64,16 @@ const MonitorSpeed = mongoose.model(
                 configSettings: {
                     emulatedFormFactor: String,
                     locale: String,
-                    onlyCategories: [String]
+                    onlyCategories: [],
+                    channel: String,
+                    formFactor: String
                 },
-                audits: { },
-                categories: {
-                    performance: {
-                        id: String,
-                        title: String,
-                        score: Number,
-                        auditRefs: [
-                        {
-                            id: String,
-                            weight: Number,
-                            group: String
-                        }]
-                    }
-                },
+                audits: {},
+                categories: {},
                 categoryGroups: {},
-                timing: {},
+                timing: {
+                    total:Number
+                },
                 i18n: {
                     rendererFormattedStrings: {
                         varianceDisclaimer: String,
@@ -120,9 +94,22 @@ const MonitorSpeed = mongoose.model(
                         labDataTitle: String,
                     }
                 },
-                stackPacks: {}
+                stackPacks: {
+                    id:String,
+                    title:String,
+                    iconDataURL: String,
+                    descriptions: {}
+                },
+                runtimeError: {
+                    code: String,
+                    message: String
+                }
             },
-            analysisUTCTimestamp:Date
+            analysisUTCTimestamp:String,
+            version: {
+                major: String,
+                minor: String
+            }
         }
     })
 );
