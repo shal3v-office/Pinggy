@@ -10,7 +10,8 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    password: { type: String, required: true }
+    password: { type: String, required: true },
+    type: String //ApiManager,Customer
 });
 
 userSchema.plugin(uniqueValidator);
