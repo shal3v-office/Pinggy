@@ -8,7 +8,7 @@ const runMonitor = async(req, res) => {
         const monitorRows = await runUptimeMonitor().then( function(response) {
             scheduleMonitorUptime();
             console.log(response)
-        })
+        });
 
         return res.status(200).json(monitorRows);
     } catch (err) {
