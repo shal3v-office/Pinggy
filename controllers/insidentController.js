@@ -1,18 +1,11 @@
-const insidentEventService = require("../services/insidentEventService");
 const createInsident = require('../lib/functions/createInsident.js');
+const sendNotification = require('../lib/functions/sendNotification.js');
 
-const newInsident = async(change) => {
+const newInsident = async (change) => {
     try {
         const insident = await createInsident(change);
-        if(insident){
-            var newInsidentEvent = {
-                insident: insident._id,
-                status: insident.status,
-                site: insident.site,
-                managars: insident.managars,
-                description: "insident created"
-            };
-            const insidentEvent = await insidentEventService.createInsidentEvent(newInsidentEvent);    
+        if (insident) {
+            const notification = await sendNotification(insident)
         }
         return insident;
     } catch (err) {

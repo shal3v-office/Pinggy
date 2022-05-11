@@ -1,10 +1,10 @@
 const { InsidentEvent } = require("../models/insidentEventModel");
 
-//create insident event
-const createInsidentEvent = async (insidentEvent) => {
+//create insidentEvent
+const createInsidentEvent = async(insidentEvent) => {
     try {
-        const newInsidentEvent = await InsidentEvent.create(insidentEvent);
-        return newInsidentEvent;
+        const insidentEventCreated = await InsidentEvent.create(insidentEvent);
+        return insidentEventCreated;
     } catch (error) {
         console.log(error);
     }

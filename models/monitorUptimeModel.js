@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const { Site } = require('./siteModel');
 const insidentController = require("../controllers/insidentController");
+const notificationService = require("../services/notificationService");
 
 const MonitorUptime = mongoose.model(
     "MonitorUptime",
@@ -15,10 +16,11 @@ const MonitorUptime = mongoose.model(
     })
 );
 
-const changeStream = MonitorUptime.watch().on('change', change => {
-    // console.log(change);
+const changeStream = MonitorUptime.watch().on('change', async(change) => {
     try {
-        const insident = insidentController.newInsident(change);
+        if(change.fullDocument.status >= 400){
+            const insident = await insidentController.newInsident(change);
+        }
     } catch (err) {
         console.log(err);
     }
