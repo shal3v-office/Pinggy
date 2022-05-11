@@ -21,6 +21,8 @@ var customerRouter = require('./routes/customerRouter');
 var siteRouter = require('./routes/siteRouter');
 var monitorUptimeRouter = require('./routes/monitorUptimeRouter');
 var monitorSpeedRouter = require('./routes/monitorSpeedRouter');
+var contactRouter = require('./routes/contactRouter');
+var contactGroupRouter = require('./routes/contactGroupRouter');
 
 //Middleware
 const checkIfAdminIsAuth = require('./lib/middlewares/checkIfAdminIsAuth');
@@ -65,6 +67,8 @@ app.use('/api/customers', customerRouter);
 app.use('/api/sites', siteRouter);
 app.use('/api/monitorUptime', monitorUptimeRouter);
 app.use('/api/monitorSpeed', monitorSpeedRouter);
+app.use('/api/contacts', contactRouter);
+app.use('/api/contactGroups', contactGroupRouter);
 
 
 // catch 404 and forward to error handler
