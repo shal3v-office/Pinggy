@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const { Site } = require('./siteModel');
 const insidentController = require("../controllers/insidentController");
-const notificationService = require("../services/notificationService");
 
 const MonitorUptime = mongoose.model(
     "MonitorUptime",
@@ -24,7 +23,6 @@ const changeStream = MonitorUptime.watch().on('change', async(change) => {
     } catch (err) {
         console.log(err);
     }
-
 });
 
 module.exports = {MonitorUptime};
