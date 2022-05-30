@@ -24,7 +24,7 @@ const Insident = mongoose.model(
 const changeStream = Insident.watch().on('change', async(change) => {
     try {
         console.log("insitent change", change);
-        if(change.operationType != "delete"){
+        if(change.operationType == "insert" || change.operationType == "update"){
             // const insidentEvent = await insidentEventController.createInsidentEvent(change.documentKey._id);
             var insidentId = change.documentKey._id;
             // const insident = await insidentService.getInsidentById(insidentId);

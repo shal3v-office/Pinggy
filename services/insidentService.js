@@ -21,7 +21,7 @@ const createOrUpdateInsident = async(insident,insidentId) => {
 //get All opened insidents by site id
 const getOpenedInsidentBySiteId = async(siteId) => {
     try {
-        return await Insident.find({ site: siteId, status:"OPENED" });
+        return await Insident.find({ site: siteId, status: { $ne: "RESOLVED" } });
     } catch (error) {
         console.log(error);
     }
