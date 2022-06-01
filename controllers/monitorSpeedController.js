@@ -7,7 +7,7 @@ const runMonitorPerSite = async(req, res) => {
     try {
         let siteId = req.params.siteId;
         const monitorRows = await getPageSpeedInsight(siteId).then( function(response) {
-            scheduleSpeedMonitor();
+            scheduleSpeedMonitor.scheduleSpeedMonitor();
             console.log(response)
         });
         return res.status(200).json(monitorRows);
