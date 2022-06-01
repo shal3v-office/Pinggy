@@ -5,9 +5,10 @@ const runUptimeMonitor = require('../lib/functions/runUptimeMonitor.js');
 
 const runMonitor = async(req, res) => {
     try {
+        console.log("runMonitor");
         const monitorRows = await runUptimeMonitor().then( function(response) {
-            scheduleMonitorUptime();
-            console.log(response)
+            console.log("runUptimeMonitorResponse:", response);
+            scheduleMonitorUptime.scheduleMonitorUptime();
         });
 
         return res.status(200).json(monitorRows);

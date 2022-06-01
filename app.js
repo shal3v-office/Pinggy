@@ -23,6 +23,7 @@ var monitorUptimeRouter = require('./routes/monitorUptimeRouter');
 var monitorSpeedRouter = require('./routes/monitorSpeedRouter');
 var contactRouter = require('./routes/contactRouter');
 var contactGroupRouter = require('./routes/contactGroupRouter');
+var cronJobsRouter = require('./routes/cronJobRouter');
 
 //Middleware
 const checkIfAdminIsAuth = require('./lib/middlewares/checkIfAdminIsAuth');
@@ -69,6 +70,7 @@ app.use('/api/monitorUptime', monitorUptimeRouter);
 app.use('/api/monitorSpeed', monitorSpeedRouter);
 app.use('/api/contacts', contactRouter);
 app.use('/api/contactGroups', contactGroupRouter);
+app.use('/api/cronJobsRouter', cronJobsRouter);
 
 
 // catch 404 and forward to error handler
