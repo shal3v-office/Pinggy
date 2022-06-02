@@ -2,6 +2,7 @@ const siteService = require("../services/siteService");
 const createSite = async(req, res) => {
     try {
         const site = req.body;
+        console.log(site);
         const createdSite = await siteService.createSite(site);
         return res.status(200).json(createdSite);
     } catch (err) {

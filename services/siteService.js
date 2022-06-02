@@ -4,6 +4,7 @@ const customerService = require("./customerService");
 //add new site 
 const createSite = async(newSite) => {
     try {
+        console.log(newSite);
         const siteCreated = await Site.create(newSite);
         // newSite.customer.siteList.push(siteCreated._id);
         await customerService.updateCustomerSiteList(newSite.customer,siteCreated._id);
